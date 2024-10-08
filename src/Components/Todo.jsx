@@ -1,25 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { List, ListItem, ListItemText, Container, Typography, CircularProgress } from '@mui/material';
+import { connect } from 'react-redux';
+import { fetchData } from "../action";
 
-const Todo = () => {
-  const [todos, setTodos] = useState([]);
 
 
-  useEffect(() => {
-    axios
-      .get('https://jsonplaceholder.typicode.com/todos')
-      .then((response) => {
-        setTodos(response.data); 
-        setLoading(false);
-      })
-      .catch((error) => {
-        setError('Error fetching data'); 
-        setLoading(false);
-      });
-  }, []);
+const Todo = ({data,loading,error,fetchData}) => {
+  // const [todos, setTodos] = useState([]);
 
   
+
+  useEffect(() => {
+    fetchData()
+
+    // axios
+    //   .get('https://jsonplaceholder.typicode.com/todos')
+    //   .then((response) => {
+    //     setTodos(response.data); 
+    //     // setLoading(false);
+    //   })
+    //   .catch((error) => {
+    //     setError('Error fetching data'); 
+    //     // setLoading(false);
+    //   });
+  }, []);
+
 
 
 
@@ -29,7 +35,7 @@ const Todo = () => {
         Todo List
       </Typography>
       <List>
-        {todos.map((todo) => (
+        {data.map((todo) => (
           <ListItem key={todo.id}>
             <ListItemText primary={todo.id} />
             <ListItemText primary={todo.title} />
@@ -40,4 +46,11 @@ const Todo = () => {
   );
 };
 
-export default Todo;
+const mapStateToProps = (state) => ({
+  data: state.data,
+  loading: state.loading,
+  error: state.error
+});
+
+
+export default connect(mapStateToProps,{fetchData}) (Todo);

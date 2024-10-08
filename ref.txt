@@ -1,0 +1,8 @@
+//action file define ceyanam
+//reducer file define
+// store manage cheyan thunks use cheyum 
+// to do component data edukunnatinu data fetch function akkum aa functione action file ill akkum 
+// connect use cheyanunnath to do ill cheyum user events onnum ellathond mapstate to props define chenam
+//providers ine app.jsx ill vilikum
+
+useeffectinte akatt fetch data call cheyum ^_^

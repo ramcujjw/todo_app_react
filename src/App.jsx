@@ -3,16 +3,21 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Todo from './Components/Todo'
+import store from './store'
+import { Provider } from 'react-redux'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
+
+<h1>Todo APP</h1>
+      <Provider store={store}>
+
       
-      <h1>Todo APP</h1>
+      
       <Todo/>
-      
+      </Provider>
     </>
   )
 }
